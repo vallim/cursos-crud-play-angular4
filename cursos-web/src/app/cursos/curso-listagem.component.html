@@ -1,0 +1,27 @@
+<div class="jumbotron">
+    <h1>Listagem Cursos</h1>
+</div>
+<div class="row">
+    <div class="col-md-2">
+            <button [routerLink]="['/cursos/novo']" class="btn btn-primary">Novo Curso</button>
+    </div>
+</div>
+
+<div class="table-responsive" style="margin-top: 10px;">
+    <table class="table table-striped">
+        <thead>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Período</th>
+            <th>Categoria</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let curso of cursos">  
+                <td>{{curso.nome}}</td>
+                <td>{{curso.descricao}}</td>
+                <td>{{curso.periodo}}</td>
+                <td>{{curso.categoria}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
