@@ -8,6 +8,8 @@ scalaVersion := "2.12.2"
 
 libraryDependencies += guice
 libraryDependencies += javaJpa
+libraryDependencies += cacheApi
+libraryDependencies += ehcache
 libraryDependencies += "com.h2database" % "h2" % "1.4.194"
 libraryDependencies += "org.hibernate" % "hibernate-core" % "5.2.5.Final"
 libraryDependencies += "org.postgresql" % "postgresql" % "9.3-1103-jdbc41"

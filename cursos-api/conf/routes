@@ -7,5 +7,7 @@ GET     /api/cursos                     br.com.cursos.controller.CursoController
 POST    /api/cursos                     br.com.cursos.controller.CursoController.novoCurso
 PUT     /api/cursos                     br.com.cursos.controller.CursoController.atualizaCurso
 
+GET     /api/categorias                 br.com.cursos.controller.CategoriaController.listarCategorias
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
