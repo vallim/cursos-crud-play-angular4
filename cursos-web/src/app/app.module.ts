@@ -7,7 +7,11 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { CursoListagemComponent } from './cursos/curso-listagem.component';
 import { CursoCadastroComponent } from "./cursos/curso-cadastro.component";
+
+import { Configuration } from "./shared/configuration";
 import { CursoService } from "./cursos/curso.service";
+import { CategoriaService } from "./shared/categoria.service";
+import { PeriodoService } from "./shared/periodo.service";
 
 @NgModule({
   declarations: [
@@ -24,7 +28,7 @@ import { CursoService } from "./cursos/curso.service";
       { path: 'cursos/novo', component: CursoCadastroComponent },
     ])
   ],
-  providers: [CursoService],
+  providers: [Configuration, CategoriaService, CursoService, PeriodoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
