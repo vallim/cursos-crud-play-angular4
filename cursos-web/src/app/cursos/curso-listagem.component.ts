@@ -3,8 +3,7 @@ import { Curso } from "./curso";
 import { CursoService } from "./curso.service";
 
 @Component({
-  templateUrl: './curso-listagem.component.html',
-  styleUrls: ['./cursos.component.css']
+  templateUrl: './curso-listagem.component.html'
 })
 export class CursoListagemComponent implements OnInit {
 
