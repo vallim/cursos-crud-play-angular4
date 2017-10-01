@@ -3,10 +3,18 @@
         <h2>Novo Curso</h2>
     </div>
     <div class="panel-body">
-        <form (ngSubmit)="salvar()">
+        <form #form="ngForm" (ngSubmit)="salvar(form.value)">
             <div class="form-group">
                 <label for="nome">Nome:</label>
-                <input id="nome" type="text" name="nome" [(ngModel)]="curso.nome" class="form-control"/>
+                <input id="nome" type="text" #nome="ngModel" name="nome" [(ngModel)]="curso.nome" class="form-control" minlength="3" maxlength="100" required/>
+                <div *ngIf="nome.errors && (nome.dirty || nome.touched)" class="alert alert-danger">
+                    <div [hidden]="!nome.errors.required">
+                        O campo nome é obrigatório
+                    </div>
+                    <div [hidden]="!nome.errors.minlength">
+                        O nome deve ter pelos menos 3 caracteres
+                    </div>
+                </div>
             </div>
 
             <div class="form-group">
@@ -16,21 +24,33 @@
 
             <div class="form-group">
                 <label for="categoria">Categoria:</label>
-                <select class="form-control" id="categoria" name="categoria" [(ngModel)]="curso.categoria">
+                <select id="categoria" #categoria="ngModel" name="categoria" [(ngModel)]="curso.categoria" class="form-control" required>
+                    <option [ngValue]="null">Selecione</option>
                     <option *ngFor="let categoria of categorias" [ngValue]="categoria">{{categoria}}</option>
                 </select>
+                <div *ngIf="categoria.errors && (categoria.dirty || categoria.touched)" class="alert alert-danger">
+                    <div [hidden]="!categoria.errors.required">
+                        O campo categoria é obrigatório
+                    </div>
+                </div>
             </div>
             
             <div class="form-group">
                 <label for="periodo">Período:</label>
-                <select class="form-control" id="periodo" name="periodo" [(ngModel)]="curso.periodo">
+                <select id="periodo" #periodo="ngModel" name="periodo" [(ngModel)]="curso.periodo" class="form-control"  required>
+                    <option [ngValue]="null">Selecione</option>
                     <option *ngFor="let periodo of periodos" [ngValue]="periodo">{{periodo}}</option>
                 </select>
+                <div *ngIf="periodo.errors && (periodo.dirty || periodo.touched)" class="alert alert-danger">
+                    <div [hidden]="!periodo.errors.required">
+                        O campo período é obrigatório
+                    </div>
+                </div>
             </div>
 
             <div class="form-group">
                 <button class="btn btn-default" [routerLink]="['/cursos']">Voltar</button>
-                <button class="btn btn-primary">Salvar</button>
+                <button class="btn btn-primary" [disabled]="!form.valid">Salvar</button>
             </div>
         </form>
     </div>
