@@ -14,4 +14,8 @@ export class CursoService {
     findAll(): Observable<Curso[]> {
         return this.httpClient.get<Curso[]>(this.configuration.getUrl('/cursos'), {})
     }
+
+    save(curso: Curso): Observable<Curso> {
+        return this.httpClient.post<Curso>(this.configuration.getUrl('/cursos'), curso);
+    }
 }
