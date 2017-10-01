@@ -2,7 +2,6 @@ package br.com.cursos.repository;
 
 import br.com.cursos.model.Curso;
 import play.db.jpa.JPAApi;
-import play.db.jpa.Transactional;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -17,13 +16,11 @@ public class CursoRepository implements ICursoRepository {
     private JPAApi jpaApi;
 
     @Override
-    @Transactional
     public List<Curso> findAll() {
         return wrap(this::list);
     }
 
     @Override
-    @Transactional
     public Curso save(Curso curso) {
         return wrap(em -> persist(em, curso));
     }
