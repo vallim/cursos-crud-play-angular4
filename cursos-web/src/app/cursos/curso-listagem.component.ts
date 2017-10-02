@@ -12,6 +12,25 @@ export class CursoListagemComponent implements OnInit {
   constructor(private cursoService: CursoService) { }
 
   ngOnInit() {
-    this.cursoService.findAll().subscribe(cursos => this.cursos = cursos);
+    this.carregarCursos();
+  }
+
+  private carregarCursos() {
+    this.cursoService.findAll().subscribe(data => {
+      this.cursos = data
+    });
+  }
+
+  remover(curso: Curso) {
+    if (confirm("Deseja mesmo excluir o curso: " + curso.nome + "?")) {
+      this.cursoService.delete(curso.id).subscribe(
+        data => {
+            this.carregarCursos();
+        },
+        error => {
+            console.error("Erro ao deletar o curso");
+        }
+      );
+    }
   }
 }

@@ -14,6 +14,7 @@
             <th>Descrição</th>
             <th>Período</th>
             <th>Categoria</th>
+            <th></th>
         </thead>
         <tbody>
             <tr *ngFor="let curso of cursos">  
@@ -21,6 +22,11 @@
                 <td>{{curso.descricao}}</td>
                 <td>{{curso.periodo}}</td>
                 <td>{{curso.categoria}}</td>
+                <td>
+                    <button type="button" (click)="remover(curso)" class="btn-link" style="color: #a94442">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </button>
+                </td>
             </tr>
         </tbody>
     </table>

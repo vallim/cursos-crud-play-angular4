@@ -18,4 +18,8 @@ export class CursoService {
     save(curso: Curso): Observable<Curso> {
         return this.httpClient.post<Curso>(this.configuration.getUrl('/cursos'), curso);
     }
+
+    delete(id: number) {
+        return this.httpClient.delete(this.configuration.getUrl('/cursos/' + id))
+    }
 }
