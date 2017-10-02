@@ -15,4 +15,6 @@ public interface ICursoRepository {
     Curso findById(Long id);
 
     Curso update(Curso curso);
+
+    void delete(Long id);
 }

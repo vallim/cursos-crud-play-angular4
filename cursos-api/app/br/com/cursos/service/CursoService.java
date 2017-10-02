@@ -29,12 +29,11 @@ public class CursoService implements ICursoService {
 
     @Override
     public Curso update(Curso curso) {
-        Curso cursoToUpdate = findById(curso.getId());
-
-        if (cursoToUpdate == null) {
-            throw new CursoNotFoundException();
-        }
-
         return cursoRepository.update(curso);
+    }
+
+    @Override
+    public void delete(Long id) {
+        cursoRepository.delete(id);
     }
 }

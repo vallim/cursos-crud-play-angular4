@@ -6,6 +6,7 @@
 GET     /api/cursos                     br.com.cursos.controller.CursoController.listaCursos
 POST    /api/cursos                     br.com.cursos.controller.CursoController.novoCurso
 PUT     /api/cursos                     br.com.cursos.controller.CursoController.atualizaCurso
+DELETE  /api/cursos/:id                 br.com.cursos.controller.CursoController.removeCurso(id: Long)
 
 GET     /api/categorias                 br.com.cursos.controller.CategoriaController.listarCategorias
 

@@ -33,4 +33,14 @@ public class CursoController extends Controller {
             return notFound("O curso com id: " + curso.getId() + " não foi encontrado");
         }
     }
+
+    public Result removeCurso(Long id) {
+        try {
+            cursoService.delete(id);
+
+            return noContent();
+        } catch (CursoNotFoundException ex) {
+            return notFound("O curso com id: " + id + " não foi encontrado");
+        }
+    }
 }

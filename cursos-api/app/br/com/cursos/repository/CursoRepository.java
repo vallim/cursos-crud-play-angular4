@@ -1,6 +1,8 @@
 package br.com.cursos.repository;
 
 import br.com.cursos.model.Curso;
+import br.com.cursos.model.CursoNotFoundException;
+import org.springframework.beans.BeanUtils;
 import play.db.jpa.JPAApi;
 
 import javax.inject.Inject;
@@ -39,8 +41,31 @@ public class CursoRepository implements ICursoRepository {
         return wrap(em -> update(em, curso));
     }
 
+    @Override
+    public void delete(Long id) {
+        wrap(em -> delete(em, id));
+    }
+
+    private Curso delete(EntityManager em, Long id) {
+        Curso cursoExistente = findById(em, id);
+
+        if (cursoExistente == null) {
+            throw new CursoNotFoundException();
+        }
+        em.remove(cursoExistente);
+
+        return cursoExistente;
+    }
+
     private Curso update(EntityManager em, Curso curso) {
-        return em.merge(curso);
+        Curso cursoExistente = findById(curso.getId());
+
+        if (cursoExistente == null) {
+            throw new CursoNotFoundException();
+        }
+        BeanUtils.copyProperties(curso, cursoExistente);
+
+        return em.merge(cursoExistente);
     }
 
     private Curso findById(EntityManager em, Long id) {
