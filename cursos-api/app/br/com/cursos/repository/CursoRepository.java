@@ -58,14 +58,7 @@ public class CursoRepository implements ICursoRepository {
     }
 
     private Curso update(EntityManager em, Curso curso) {
-        Curso cursoExistente = findById(curso.getId());
-
-        if (cursoExistente == null) {
-            throw new CursoNotFoundException();
-        }
-        BeanUtils.copyProperties(curso, cursoExistente);
-
-        return em.merge(cursoExistente);
+        return em.merge(curso);
     }
 
     private Curso findById(EntityManager em, Long id) {

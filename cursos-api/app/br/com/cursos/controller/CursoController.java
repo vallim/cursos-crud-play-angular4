@@ -24,11 +24,11 @@ public class CursoController extends Controller {
         return created(Json.toJson(cursoService.save(curso)));
     }
 
-    public Result atualizaCurso() {
+    public Result atualizaCurso(Long id) {
         Curso curso = Json.fromJson(request().body().asJson(), Curso.class);
 
         try {
-            return ok(Json.toJson(cursoService.update(curso)));
+            return ok(Json.toJson(cursoService.update(id, curso)));
         } catch (CursoNotFoundException ex) {
             return notFound("O curso com id: " + curso.getId() + " não foi encontrado");
         }

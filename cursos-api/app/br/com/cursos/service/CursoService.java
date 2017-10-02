@@ -3,6 +3,7 @@ package br.com.cursos.service;
 import br.com.cursos.model.Curso;
 import br.com.cursos.model.CursoNotFoundException;
 import br.com.cursos.repository.ICursoRepository;
+import org.springframework.beans.BeanUtils;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -28,7 +29,14 @@ public class CursoService implements ICursoService {
     }
 
     @Override
-    public Curso update(Curso curso) {
+    public Curso update(Long id, Curso curso) {
+        Curso cursoExistente = findById(id);
+
+        if (cursoExistente == null) {
+            throw new CursoNotFoundException();
+        }
+        BeanUtils.copyProperties(curso, cursoExistente);
+
         return cursoRepository.update(curso);
     }
 
